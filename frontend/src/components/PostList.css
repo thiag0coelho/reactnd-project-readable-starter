@@ -1,0 +1,8 @@
+.PostList {
+  list-style: none;
+}
+
+.PostList-comments {
+  font-size: 0.8em;
+  color: darkgray;
+}
