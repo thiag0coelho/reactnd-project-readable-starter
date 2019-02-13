@@ -1,26 +1,24 @@
-import * as api from '../client';
+import * as ReadableAPI from "../util/api";
 
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const REQUEST_POSTS = 'REQUEST_POSTS';
+export const REQUEST_POSTS = "REQUEST_POSTS";
+export const RECEIVE_POSTS = "RECEIVE_POSTS";
 
-export const receivePosts = (category, posts) => ({
-  type: RECEIVE_POSTS,
-  posts,
-  category
-});
-
-export const requestPosts = (category) => {
+export const requestPosts = () => {
   return {
-    type: REQUEST_POSTS,
-    category
+    type: REQUEST_POSTS
   };
 };
 
-export const fetchPosts = (category) => {
-  return (dispatch) => {
-    dispatch(requestPosts(category));
-    return api
-      .getPosts(category)
-      .then((json) => dispatch(receivePosts(category, json)));
+export const receivePosts = posts => {
+  return {
+    type: RECEIVE_POSTS,
+    posts
   };
+};
+
+export const getPosts = () => dispatch => {
+  dispatch(requestPosts());
+  ReadableAPI.getPosts().then(posts => {
+    dispatch(receivePosts(posts));
+  });
 };

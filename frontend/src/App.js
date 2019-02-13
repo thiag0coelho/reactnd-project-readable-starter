@@ -1,17 +1,17 @@
 import { Grid } from 'semantic-ui-react';
 import React, { Component } from 'react';
 import {
-  fetchPosts,
-} from '../actions';
+  getPosts,
+} from './actions/posts';
 
 import PropTypes from 'prop-types';
-import PostList from '../containers/PostList';
+import PostList from './components/PostList';
 import { connect } from 'react-redux';
 
 class App extends Component {
   componentDidMount() {
-    const { fetchPosts,  } = this.props;
-    fetchPosts();
+    const { getPosts  } = this.props;
+    getPosts();
   }
 
   render() {
@@ -35,7 +35,7 @@ const mapStateToProps = ({ posts, }) => ({
 });
 
 const actionCreators = {
-  fetchPosts,
+  getPosts,
 };
 
 export default connect(mapStateToProps, actionCreators)(App);
